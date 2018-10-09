@@ -1,0 +1,35 @@
+<div class="ui-g">
+    <div class="ui-g-12 ui-md-12 div-right"> 
+        <input type="text" pInputText (keyup)="searchByName($event.target.value)"/>
+    </div>
+</div>
+<h2>{{title}}</h2>
+<p-dataView [value]="products" [paginator]="true" [rows]="limit"
+        [lazy]="true" (onLazyLoad)="loadData($event)" [totalRecords]="total">
+    <p-header>
+        <span>Total products - {{total}}</span>
+        <span> / </span>
+        <span>Total per page - </span>
+        <p-spinner size="5" [(ngModel)]="limit" [min]="1" [max]="100" (onChange)="search()"></p-spinner>
+    </p-header>
+    <ng-template let-product pTemplate="listItem">
+        <div class="ui-g" style="padding: 2em; border-bottom: 1px solid #d9d9d9">
+            <div class="ui-g-12 ui-md-3">
+                <div class="ui-g">
+                    <div *ngFor="let picture of product.pictures" class="ui-g-3 ui-md-3 div-picture">
+                        <img class="img-picture" src="{{picture.uri}}">
+                    </div>
+                </div>
+            </div>
+            <div class="ui-g-12 ui-md-6">
+                <h4 matLine>{{product.name}}</h4>
+                <p matLine>
+                    <span>{{product.category}}</span>
+                </p>
+            </div>
+            <div class="ui-g-12 ui-md-3">
+                <span class="price-value">{{product.price.value}}</span> por <span>{{product.price.discount}}</span>
+            </div>
+        </div>
+    </ng-template>
+</p-dataView>
