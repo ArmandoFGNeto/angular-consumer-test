@@ -11,3 +11,5 @@ localhost:4200
 
 To change the REST API endpoint edit the getProductsUrl var inside the app.service.ts with the new endpoint.
 
+Know issues: The images aren't styled correctly.
+
